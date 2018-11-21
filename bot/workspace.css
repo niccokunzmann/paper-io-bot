@@ -7,8 +7,13 @@
   padding: 0.3em;
   border-radius: 0.3em;
   background-color: #eee;
+  position: absolute;
+  top: 0.1em;
+  left: 0.1em;
+  z-index: 1001;
 }
 
 #openClose.selected {
   background-color: #ddd;
 }
+
