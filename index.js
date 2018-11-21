@@ -2,7 +2,11 @@
 function fillCode() {
   var element = document.getElementById("source");
   var location = "" + document.location;
-  element.innerText = "var window.botRoot = \"" + location + "\"; \nvar script = document.createElement(\"script\"); \nscript.src = location + \"load-bot.js\"; \ndocument.head.appendChild(script);";
+  element.innerText = 
+    "window.botRoot = \"" + location + "\"; \n" + 
+    "var script = document.createElement(\"script\"); \n" + 
+    "script.src = botRoot + \"load-bot.js\"; \n" + 
+    "document.head.appendChild(script);";
 }
 
 window.addEventListener("load", fillCode)
