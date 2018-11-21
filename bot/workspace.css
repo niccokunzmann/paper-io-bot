@@ -1,0 +1,14 @@
+
+.hidden {
+  display: none;
+}
+
+#openClose {
+  padding: 0.3em;
+  border-radius: 0.3em;
+  background-color: #eee;
+}
+
+#openClose.selected {
+  background-color: #ddd;
+}
