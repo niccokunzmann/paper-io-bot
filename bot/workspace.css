@@ -34,5 +34,6 @@ html, body {
 
 #blocklyWorkspace {
   position: absolute;
+  z-index: 1000;
 }
 

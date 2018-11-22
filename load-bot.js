@@ -29,6 +29,7 @@
   // https://developers.google.com/blockly/guides/configure/web/fixed-size
   loadScript("blockly/blockly_compressed.js");
   loadScript("blockly/blocks_compressed.js");
+  loadScript("blockly/javascript_compressed.js");
   loadScript("blockly/msg/js/en.js");
   // load our own code
   loadScript("bot/workspace.js");
