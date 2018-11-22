@@ -240,7 +240,11 @@ var toolbox =
 '      </block>' + 
 '    </category>' + 
 '  </category>' + 
-'  <category name="Output" colour="%{BKY_TEXTS_HUE}">' + 
+'  <category name="Bot" colour="%{BKY_TEXTS_HUE}">' + 
+'    <block type="bot_move">' + 
+'    </block>' + 
+'    <block type="bot_turn">' + 
+'    </block>' + 
 '    <block type="text_print">' + 
 '      <value name="TEXT">' + 
 '        <block type="text">' + 

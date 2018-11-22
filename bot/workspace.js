@@ -7,7 +7,7 @@ var botTurn; // currently running number
 var botStop; // function to stop the bot
 var LoopTrap; // count to break infinite loops
 
-setTimeout(function () {
+(function () {
   var workspaceElement;
   var workspace;
 
@@ -70,14 +70,20 @@ setTimeout(function () {
     // see https://developers.google.com/blockly/guides/app-integration/running-javascript
 
     // highlight the currently executing block
-    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    Blockly.JavaScript.addReservedWords('highlightBlock');
-    function highlightBlock(id) {
+    Blockly.JavaScript.STATEMENT_PREFIX = 'executingBlock(%1);\n';
+    Blockly.JavaScript.addReservedWords('executingBlock');
+    Blockly.JavaScript.addReservedWords('botTurn');
+    Blockly.JavaScript.addReservedWords('window');
+    var thisBotTurn = botTurn;
+    function executingBlock(id) {
+      if (botTurn != thisBotTurn) {
+        throw "Stop Bot Execution number" + thisBotTurn;
+      }
       workspace.highlightBlock(id);
     }
     // avoid infinite loops
     LoopTrap = 100000;
-    Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if(window.botTurn != ' + botTurn + ') throw "Stop Bot ' + botTurn + '";\nif(--window.LoopTrap == 0) throw "Infinite loop.";\n';
+    Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if(--window.LoopTrap == 0) throw "Infinite loop.";\n';
     // generate the code
     Blockly.JavaScript.addReservedWords('code');
     var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -89,6 +95,7 @@ setTimeout(function () {
       '    console.log(e);\n' +
       '    alert(e);\n' +
       '  }\n' + 
+      '  executingBlock(null);\n' +
       '}\n' +
       'runCode();'
     console.log(code);
@@ -115,9 +122,9 @@ setTimeout(function () {
       game_start_original = game_start;
     }
     window.game_start = start = function () {
-      game_start_original();
       startBot();
       console.log("game starts");
+      game_start_original();
     }
   }
   
@@ -142,5 +149,7 @@ setTimeout(function () {
   waitForStart();
   createControls();
 
-}, 100);
+})();
+
+var BotWorkspaceLoaded = true;
 

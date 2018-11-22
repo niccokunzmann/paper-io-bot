@@ -18,18 +18,18 @@ function botInitilizeMovement() {
  * This function is not threadsafe and should only be used within the
  * globally started movement thread.
  */
-var _botMovementPromiseResolve;
+var _botMovementPromiseResolve = function(){};
 var _botMovementPromise;
 function continueExecutionAfterWaitingForMovement() {
   oldPromiseResolve = _botMovementPromiseResolve;
   _botMovementPromise = new Promise(function(resolve){
     _botMovementPromiseResolve = resolve;
+    oldPromiseResolve(botCurrentDirection);
   });
-  oldPromiseResolve(botCurrentDirection);
 }
 
 async function awaitMovement() {
-  var direction = await _botMovementPromise();
+  var direction = await _botMovementPromise;
 }
 
 
@@ -40,6 +40,7 @@ async function awaitMovement() {
 function botInitilizeMovementGlobally() {
   var x0 = p1_x;
   var y0 = p1_y;
+  continueExecutionAfterWaitingForMovement();
   var id = setInterval(function() {
     if (p1_x == x0 && p1_y == y0) {
       return; // not moved
@@ -53,9 +54,11 @@ function botInitilizeMovementGlobally() {
     } else if (p1_x + 1 == x0) {
       botCurrentDirection = "east";
     } else {
-      return;
+      console.log("movement.js: player movement started.");
     }
     continueExecutionAfterWaitingForMovement();
+    x0 = p1_x;
+    y0 = p1_y;
   }, 5);
 }
 

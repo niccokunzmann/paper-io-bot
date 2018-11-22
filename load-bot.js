@@ -4,9 +4,20 @@
  * Expectations:
  * `botRoot` must be the location of the root directory of this repository.
  */
- 
+
+// for loading checks
+var Blockly;
+var toolbox;
+var botInitilizeMovement;
+var BotWorkspaceLoaded;
+
 (function () {
-  function loadScript(name) {
+  var scripts = [];
+  function loadScript(name, scriptHasLoaded) {
+    scripts.push({name:name, scriptHasLoaded:scriptHasLoaded});
+  }
+  
+  function loadScriptNamed(name) {
     var script = document.createElement("script");
     script.src = botRoot + name;
     document.head.appendChild(script);
@@ -28,15 +39,33 @@
 
   // load as described here:
   // https://developers.google.com/blockly/guides/configure/web/fixed-size
-  loadScript("blockly/blockly_compressed.js");
-  loadScript("blockly/blocks_compressed.js");
-  loadScript("blockly/javascript_compressed.js");
-  loadScript("blockly/msg/js/en.js");
+  loadScript("blockly/blockly_compressed.js", function(){return Blockly;});
+  loadScript("blockly/msg/js/en.js", function(){return Blockly.Msg.ADD_COMMENT;});
+  loadScript("blockly/blocks_compressed.js", function(){return Blockly.Blocks.colour;});
+  loadScript("blockly/javascript_compressed.js", function(){return Blockly.JavaScript;});
   // load our own code
-  loadScript("bot/toolbox.js");
-  loadScript("bot/blocks.js");
-  loadScript("bot/movement.js");
-  loadScript("bot/workspace.js");
+  loadScript("bot/toolbox.js", function(){return toolbox;});
+  loadScript("bot/blocks.js", function(){return Blockly.Blocks['bot_move'];});
+  loadScript("bot/movement.js",  function(){return botInitilizeMovement;});
+  loadScript("bot/workspace.js", function(){return BotWorkspaceLoaded;});
   loadStyle("bot/workspace.css");
+  
+  // load scripts in order
+  loadScriptNamed(scripts[0].name);
+  var intervalId = setInterval(function() {
+    if (scripts.length > 0) {
+      if (scripts[0].scriptHasLoaded()) {
+        scripts.shift();
+        if (scripts.length > 0) {
+          if (scripts[0].scriptHasLoaded()) {
+            console.log("WARNING: test for script " + scripts[0].name + " was true from the start.");
+          }
+          loadScriptNamed(scripts[0].name);
+        }
+      }
+    } else {
+      clearInterval(intervalId);
+    }
+  }, 10);
 })();
 

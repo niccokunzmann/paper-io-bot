@@ -1,5 +1,6 @@
 /*
  * This file contains the custom blocks.
+ * If you want to add blocks to the workspace, see toolbox.js.
  */
 
 var COLOR_MOVEMENT = 45;
@@ -46,7 +47,7 @@ Blockly.JavaScript['bot_turn'] = function(block) {
   return code;
 };
 
-Blockly.Blocks['bot_turn'] = {
+Blockly.Blocks['bot_move'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("move one step");
@@ -59,7 +60,7 @@ Blockly.Blocks['bot_turn'] = {
   }
 };
 
-Blockly.JavaScript['bot_turn'] = function(block) {
+Blockly.JavaScript['bot_move'] = function(block) {
   var code = 'await botWaitForMove();\n';
   return code;
 };
