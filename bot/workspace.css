@@ -4,15 +4,18 @@
   display: none;
 }
 
-/* button for the editor to hide the editor */
-#openClose {
+.floatingButton {
   padding: 0.3em;
   border-radius: 0.3em;
   background-color: #eee;
   position: absolute;
+  z-index: 1001;
+}
+
+/* button for the editor to hide the editor */
+#openClose {
   top: 0.1em;
   right: 0.1em;
-  z-index: 1001;
 }
 
 #openClose.selected {
@@ -40,5 +43,10 @@ html, body {
   z-index: 1000;
 }
 
-/*  */
+/* Controls */
+
+#startButton {
+  top: 2em;
+  right: 0.1em;
+}
 

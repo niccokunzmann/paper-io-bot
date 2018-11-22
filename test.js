@@ -7,3 +7,11 @@ var script = document.createElement("script");
 script.src = botRoot + "load-bot.js"; 
 document.head.appendChild(script);
 
+/*
+ * Interface for the test platform.
+ */
+
+function game_start() {
+  console.log("test: game_start");
+}
+

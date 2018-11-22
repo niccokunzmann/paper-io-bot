@@ -4,6 +4,7 @@
  * Expectations:
  * `botRoot` must be the location of the root directory of this repository.
  */
+ 
 (function () {
   function loadScript(name) {
     var script = document.createElement("script");
@@ -32,6 +33,8 @@
   loadScript("blockly/javascript_compressed.js");
   loadScript("blockly/msg/js/en.js");
   // load our own code
+  loadScript("bot/toolbox.js");
+  loadScript("bot/blocks.js");
   loadScript("bot/workspace.js");
   loadStyle("bot/workspace.css");
 })();
