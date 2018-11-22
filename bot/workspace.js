@@ -144,7 +144,7 @@ var LoopTrap; // count to break infinite loops
     var startButton = document.createElement("a");
     startButton.id = "startButton";
     startButton.classList.add("floatingButton");
-    startButton.innerText = "Start";
+    startButton.innerText = "Load Code";
     document.body.appendChild(startButton);
 
     startButton.onclick = function () {

@@ -86,6 +86,10 @@ function rightOf(direction) {
   return leftOf(leftOf(leftOf(direction)));
 }
 
+function oppositeOf(direction) {
+  return leftOf(leftOf(direction)));
+}
+
 /* Turns the player in a direction if possible.
  * Called by the bot_turn block.
  * direction is "north", "south", "east", "west", "left", "right"

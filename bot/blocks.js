@@ -1,6 +1,9 @@
 /*
  * This file contains the custom blocks.
  * If you want to add blocks to the workspace, see toolbox.js.
+ *
+ * You can design new blocks using the Blockly Developer Tools
+ * https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
  */
 
 var COLOR_MOVEMENT = 45;
