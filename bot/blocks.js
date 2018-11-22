@@ -57,6 +57,7 @@ Blockly.JavaScript['bot_turn'] = function(block) {
   return code;
 };
 
+/* move the bot */
 Blockly.Blocks['bot_move'] = {
   init: function() {
     this.appendDummyInput()
@@ -75,3 +76,25 @@ Blockly.JavaScript['bot_move'] = function(block) {
   return code;
 };
 
+/* sensing */
+Blockly.Blocks['bot_sense_direction'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["my","[botClassifyMy]"], ["any","[botClassifyMy, botClassifyEnemy]"], ["enemy","[botClassifyEnemy]"]]), "OWNER")
+        .appendField(new Blockly.FieldDropdown([["path","[botCheckPath]"], ["area","[botCheckArea]"], ["path or wall","[botCheckPath, botCheckWall]"], ["wall","[botCheckWall]"]]), "TYPE")
+        .appendField("is")
+        .appendField(new Blockly.FieldDropdown([["ahead","[positionInDirection(botCurrentDirection)]"], ["left","[positionInDirection(leftOf(botCurrentDirection))]"], ["right","[positionInDirection(rightOf(botCurrentDirection))]"], ["behind","[positionInDirection(oppositeOf(botCurrentDirection))]"], ["north","[positionInDirection(\"north\")]"], ["west","[positionInDirection(\"west\")]"], ["south","[positionInDirection(\"south\")]"], ["east","[positionInDirection(\"east\")]"]]), "DIRECTION");
+    this.setOutput(true, "Boolean");
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['bot_sense_direction'] = function(block) {
+  var dropdown_owner = block.getFieldValue('OWNER');
+  var dropdown_type = block.getFieldValue('TYPE');
+  var dropdown_direction = block.getFieldValue('DIRECTION');
+  var code = 'botSenseAnyAt(' + dropdown_owner + ', ' + dropdown_type + ', ' + dropdown_direction + ')';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};

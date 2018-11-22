@@ -45,13 +45,13 @@ function botInitilizeMovementGlobally() {
     if (p1_x == x0 && p1_y == y0) {
       return; // not moved
     }
-    if (p1_y - 1 == y0) {
+    if (p1_y < y0) {
       botCurrentDirection = "north";
-    } else if (p1_y + 1 == y0) {
+    } else if (p1_y > y0) {
       botCurrentDirection = "south";
-    } else if (p1_x - 1 == x0) {
+    } else if (p1_x < x0) {
       botCurrentDirection = "west";
-    } else if (p1_x + 1 == x0) {
+    } else if (p1_x > x0) {
       botCurrentDirection = "east";
     } else {
       console.log("movement.js: player movement started.");
@@ -87,7 +87,7 @@ function rightOf(direction) {
 }
 
 function oppositeOf(direction) {
-  return leftOf(leftOf(direction)));
+  return leftOf(leftOf(direction));
 }
 
 /* Turns the player in a direction if possible.
@@ -122,4 +122,19 @@ async function botWaitForMove() {
   }
 }
 
+function getCurrentPosition() {
+  return {x:p1_x, y:p1_y};
+}
 
+function positionInDirection(direction) {
+  var here = getCurrentPosition();
+  if (direction == "west") {
+    return {x: here.x - 1, y: here.y};
+  } else if (direction == "south") {
+    return {x: here.x, y: here.y + 1};
+  } else if (direction == "east") {
+    return {x: here.x + 1, y: here.y};
+  } else /* north */ {
+    return {x: here.x, y: here.y - 1};
+  }
+}

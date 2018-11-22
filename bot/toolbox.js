@@ -245,6 +245,8 @@ var toolbox =
 '    </block>' + 
 '    <block type="bot_turn">' + 
 '    </block>' + 
+'    <block type="bot_sense_direction">' + 
+'    </block>' + 
 '    <block type="text_print">' + 
 '      <value name="TEXT">' + 
 '        <block type="text">' + 

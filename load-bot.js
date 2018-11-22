@@ -10,6 +10,7 @@ var Blockly;
 var toolbox;
 var botInitilizeMovement;
 var BotWorkspaceLoaded;
+var botSenseAnyAt;
 
 (function () {
   var scripts = [];
@@ -52,6 +53,7 @@ var BotWorkspaceLoaded;
   loadScript("bot/blocks.js" + nocache, function(){return Blockly.Blocks['bot_move'];});
   loadScript("bot/movement.js" + nocache,  function(){return botInitilizeMovement;});
   loadScript("bot/workspace.js" + nocache, function(){return BotWorkspaceLoaded;});
+  loadScript("bot/sensing.js" + nocache, function(){return botSenseAnyAt;});
   loadStyle("bot/workspace.css" + nocache);
   
   // load scripts in order
