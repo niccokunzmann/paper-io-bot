@@ -35,6 +35,7 @@
   // load our own code
   loadScript("bot/toolbox.js");
   loadScript("bot/blocks.js");
+  loadScript("bot/movement.js");
   loadScript("bot/workspace.js");
   loadStyle("bot/workspace.css");
 })();

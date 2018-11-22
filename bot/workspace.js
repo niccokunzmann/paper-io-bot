@@ -96,6 +96,7 @@ setTimeout(function () {
   
   function startBot() {
     startNewRound();
+    botInitilizeMovement();
     runCode();
   }
   
