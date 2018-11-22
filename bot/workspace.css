@@ -1,8 +1,10 @@
 
+/* hide elements */
 .hidden {
   display: none;
 }
 
+/* button for the editor to hide the editor */
 #openClose {
   padding: 0.3em;
   border-radius: 0.3em;
@@ -17,6 +19,7 @@
   background-color: #ddd;
 }
 
+/* the area where we program */
 #blocklyArea {
   position: absolute;
   display: block;
@@ -36,4 +39,6 @@ html, body {
   position: absolute;
   z-index: 1000;
 }
+
+/*  */
 
