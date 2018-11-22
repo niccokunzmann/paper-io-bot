@@ -2,6 +2,9 @@
 
 [Program your of bot for paper-io.com][page]
 
+[Blockly is a library from Google for building beginner-friendly block-based programming languages.  
+![](blockly/logo.png)](https://developers.google.com/blockly)
+
 ## Development
 
 If you have Python3 installed, execute
