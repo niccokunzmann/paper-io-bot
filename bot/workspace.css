@@ -9,11 +9,30 @@
   background-color: #eee;
   position: absolute;
   top: 0.1em;
-  left: 0.1em;
+  right: 0.1em;
   z-index: 1001;
 }
 
 #openClose.selected {
   background-color: #ddd;
+}
+
+#blocklyArea {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: -1000;
+  left: 0px;
+  top: 0px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#blocklyWorkspace {
+  position: absolute;
 }
 
