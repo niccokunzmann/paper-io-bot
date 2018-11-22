@@ -43,6 +43,10 @@ html, body {
   z-index: 1000;
 }
 
+.blocklySvg {
+  background-color: rgba(0,0,0,0);
+}
+
 /* Controls */
 
 #startButton {
