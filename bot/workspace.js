@@ -52,6 +52,8 @@ var LoopTrap; // count to break infinite loops
     Blockly.svgResize(workspace);
     setTimeout(onresize, 1);
   }
+  
+  var openWorkspace;
 
   function createOpenAndClose() {
     var openClose = document.createElement("a");
@@ -63,6 +65,11 @@ var LoopTrap; // count to break infinite loops
     openClose.onclick = function () {
       workspaceElement.classList.toggle("hidden");
       openClose.classList.toggle("selected");
+    }
+    
+    openWorkspace = function() {
+      workspaceElement.classList.remove("hidden");
+      openClose.classList.add("selected");
     }
   }
   
@@ -93,7 +100,7 @@ var LoopTrap; // count to break infinite loops
           code +
       '  } catch (e) {\n' +
       '    console.log(e);\n' +
-      '    alert(e);\n' +
+      '    //alert(e);\n' +
       '  }\n' + 
       '  executingBlock(null);\n' +
       '}\n' +
@@ -115,6 +122,7 @@ var LoopTrap; // count to break infinite loops
     startNewRound();
     botInitilizeMovement();
     runCode();
+    openWorkspace();
   }
   
   function waitForStart() {

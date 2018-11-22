@@ -31,7 +31,14 @@ Blockly.Blocks['bot_turn'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("turn")
-        .appendField(new Blockly.FieldDropdown([["north","north"], ["east","east"], ["south","south"], ["west","west"], ["left","left"], ["right","right"]]), "DIRECTION");
+        .appendField(new Blockly.FieldDropdown([
+            ["left","'left'"],
+            ["right","'right'"],
+            ["north","'north'"],
+            ["east","'east'"],
+            ["south","'south'"],
+            ["west","'west'"],
+          ]), "DIRECTION");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

@@ -70,20 +70,41 @@ var directionToCharCode = {
   west: 37,
 }
 
+function leftOf(direction) {
+  if (direction == "north") {
+    return "west";
+  } else if (direction == "west") {
+    return "south";
+  } else if (direction == "south") {
+    return "east";
+  } else {
+    return "north";
+  }
+}
+
+function rightOf(direction) {
+  return leftOf(leftOf(leftOf(direction)));
+}
+
 /* Turns the player in a direction if possible.
  * Called by the bot_turn block.
  * direction is "north", "south", "east", "west", "left", "right"
  *
  */
 function botMoveInto(direction) {
-  // TODO: add left and right
+  if (direction == "left") {
+    direction = leftOf(botCurrentDirection);
+  } else if (direction == "right") {
+    direction = rightOf(botCurrentDirection);
+  }
+  botCurrentDirection = direction;
   var charCode = directionToCharCode[direction];
   // trigger keydown event from https://stackoverflow.com/a/5920206
-  if ($) {
-    $.event.trigger({ type : 'keydown', which : charCode });
-  } else {
-    console.log("test mode: " + direction)
+  if (window["$"] == undefined) {
+    console.log("test mode: " + direction);
+    return;
   }
+  $.event.trigger({ type : 'keydown', which : charCode });
 }
 
 /* Waits for the player to move one step.

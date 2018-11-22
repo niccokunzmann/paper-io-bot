@@ -17,7 +17,7 @@ var BotWorkspaceLoaded;
     scripts.push({name:name, scriptHasLoaded:scriptHasLoaded});
   }
   
-  function loadScriptNamed(name) {
+  function loadScriptNamed(name, cache) {
     var script = document.createElement("script");
     script.src = botRoot + name;
     document.head.appendChild(script);
@@ -37,6 +37,10 @@ var BotWorkspaceLoaded;
     console.log("loadStyle", name);
   };
 
+  // use version parameter to prevent caching
+  // see https://stackoverflow.com/a/7413243
+  var nocache = "?version=" + new Date().getTime();
+
   // load as described here:
   // https://developers.google.com/blockly/guides/configure/web/fixed-size
   loadScript("blockly/blockly_compressed.js", function(){return Blockly;});
@@ -44,11 +48,11 @@ var BotWorkspaceLoaded;
   loadScript("blockly/blocks_compressed.js", function(){return Blockly.Blocks.colour;});
   loadScript("blockly/javascript_compressed.js", function(){return Blockly.JavaScript;});
   // load our own code
-  loadScript("bot/toolbox.js", function(){return toolbox;});
-  loadScript("bot/blocks.js", function(){return Blockly.Blocks['bot_move'];});
-  loadScript("bot/movement.js",  function(){return botInitilizeMovement;});
-  loadScript("bot/workspace.js", function(){return BotWorkspaceLoaded;});
-  loadStyle("bot/workspace.css");
+  loadScript("bot/toolbox.js" + nocache, function(){return toolbox;});
+  loadScript("bot/blocks.js" + nocache, function(){return Blockly.Blocks['bot_move'];});
+  loadScript("bot/movement.js" + nocache,  function(){return botInitilizeMovement;});
+  loadScript("bot/workspace.js" + nocache, function(){return BotWorkspaceLoaded;});
+  loadStyle("bot/workspace.css" + nocache);
   
   // load scripts in order
   loadScriptNamed(scripts[0].name);
