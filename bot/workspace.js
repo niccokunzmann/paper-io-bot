@@ -66,7 +66,7 @@ setTimeout(function () {
     }
   }
   
-  function runCode() {
+  async function runCode() {
     // see https://developers.google.com/blockly/guides/app-integration/running-javascript
 
     // highlight the currently executing block
@@ -81,6 +81,16 @@ setTimeout(function () {
     // generate the code
     Blockly.JavaScript.addReservedWords('code');
     var code = Blockly.JavaScript.workspaceToCode(workspace);
+    code =
+      'async function runCode() {\n' +
+      '  try {\n' + 
+          code +
+      '  } catch (e) {\n' +
+      '    console.log(e);\n' +
+      '    alert(e);\n' +
+      '  }\n' + 
+      '}\n' +
+      'runCode();'
     console.log(code);
     try {
       eval(code);

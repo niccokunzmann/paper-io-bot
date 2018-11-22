@@ -86,9 +86,9 @@ function botMoveInto(direction) {
 /* Waits for the player to move one step.
  *
  */
-function botWaitForMove() {
+async function botWaitForMove() {
   var startId = botTurn;
-  awaitMovement();
+  await awaitMovement();
   if (startId != botTurn) {
     throw "WaitMoveStop " + startId;
   }

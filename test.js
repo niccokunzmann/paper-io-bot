@@ -15,3 +15,6 @@ function game_start() {
   console.log("test: game_start");
 }
 
+var p1_x = 1;
+var p1_y = 1;
+

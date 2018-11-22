@@ -60,7 +60,7 @@ Blockly.Blocks['bot_turn'] = {
 };
 
 Blockly.JavaScript['bot_turn'] = function(block) {
-  var code = 'botWaitForMove();\n';
+  var code = 'await botWaitForMove();\n';
   return code;
 };
 
