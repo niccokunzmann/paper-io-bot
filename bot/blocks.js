@@ -25,7 +25,7 @@ Blockly.Blocks['bot_log'] = {
 Blockly.JavaScript['bot_log'] = function(block) {
   var text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
   var code = 'console.log(' + text + ');\n';
-  return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  return code;
 };
 
 /* --------- Movement --------- */
@@ -54,7 +54,7 @@ Blockly.Blocks['bot_turn'] = {
 Blockly.JavaScript['bot_turn'] = function(block) {
   var dropdown_direction = block.getFieldValue('DIRECTION');
   var code = 'botMoveInto(' + dropdown_direction + ');\n';
-  return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  return code;
 };
 
 /* move the bot */
@@ -73,7 +73,7 @@ Blockly.Blocks['bot_move'] = {
 
 Blockly.JavaScript['bot_move'] = function(block) {
   var code = 'await botWaitForMove();\n';
-  return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  return code;
 };
 
 var DROPDOWN_OPTIONS_OWNER = [ // see sensing.js
@@ -137,8 +137,8 @@ Blockly.Blocks['bot_sense_absolute'] = {
         .setCheck("Number");
     this.setOutput(true, "Boolean");
     this.setColour(COLOR_NAVIGATION);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
@@ -163,8 +163,8 @@ Blockly.Blocks['bot_player_XY'] = {
         .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "ATTR");
     this.setOutput(true, "Number");
     this.setColour(COLOR_NAVIGATION);
- this.setTooltip("X- und Y-Koordinate von Spielern. P1 ist man");
- this.setHelpUrl("");
+    this.setTooltip("X- und Y-Koordinate von Spielern. P1 ist man");
+    this.setHelpUrl("");
   }
 };
 
