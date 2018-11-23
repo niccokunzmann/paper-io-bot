@@ -1,4 +1,34 @@
 // from blockly/demos/toolbox/index.html
+
+
+/*
+ * Embed the xml retrieved by botGetWorkspaceForToolbox()
+ * into the toolbox.
+ */
+function botAddWorkspaceExample(name, xml) {
+  return '<category name="' + name + '">' + xml + '</category>';
+}
+
+function botGetWorkspace() {
+  var workspace = Blockly.getMainWorkspace();
+  var xml = Blockly.Xml.workspaceToDom(workspace, true);
+  return Blockly.Xml.domToText(xml);
+}
+
+/*
+ * Return the workspace so it can be embedded into the toolbox below.
+ */ 
+function botGetWorkspaceForToolbox() {
+  return botMakeXMLReadyForToolbox(botGetWorkspace());
+}
+
+function botMakeXMLReadyForToolbox(xml) {
+  return xml
+    .replace(/^<[^>]+>/, "") // xml at start
+    .replace(/<[^>]+>$/, "") // xml at the end
+  ;
+}
+
 var toolbox = 
 '<xml id="toolbox" style="display: none">' + 
 '  <category name="Navigation" colour="45">' + 
@@ -279,5 +309,6 @@ var toolbox =
 '        </statement>' + 
 '      </block>' + 
 '    </category>' + 
+botAddWorkspaceExample("Distance to Players", '<variables><variable type="" id="B6vSD7n[_BbTq:QIr5Hg">x</variable><variable type="" id="0oh/=.RCpwc/3l~A]7XS">y</variable></variables><block type="procedures_defreturn" x="19" y="14"><mutation statements="false"><arg name="x" varid="B6vSD7n[_BbTq:QIr5Hg"></arg><arg name="y" varid="0oh/=.RCpwc/3l~A]7XS"></arg></mutation><field name="NAME">distanceToPlayer</field><comment pinned="false" h="80" w="160">Gibt die Distanz zu einem Spieler zurück und 1000, wenn der Spieler nicht spielt.</comment><value name="RETURN"><block type="logic_ternary"><value name="IF"><block type="logic_operation"><field name="OP">AND</field><value name="A"><block type="logic_compare"><field name="OP">LTE</field><value name="A"><block type="variables_get"><field name="VAR" id="B6vSD7n[_BbTq:QIr5Hg" variabletype="">x</field></block></value><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value><value name="B"><block type="logic_compare"><field name="OP">LTE</field><value name="A"><block type="variables_get"><field name="VAR" id="0oh/=.RCpwc/3l~A]7XS" variabletype="">y</field></block></value><value name="B"><block type="math_number"><field name="NUM">0</field></block></value></block></value></block></value><value name="THEN"><block type="math_number"><field name="NUM">1000</field></block></value><value name="ELSE"><block type="math_arithmetic"><field name="OP">ADD</field><value name="A"><block type="math_single"><field name="OP">ABS</field><value name="NUM"><block type="math_arithmetic"><field name="OP">MINUS</field><value name="A"><block type="bot_player_XY"><field name="PLAYER">p1</field><field name="ATTR">x</field></block></value><value name="B"><block type="variables_get"><field name="VAR" id="B6vSD7n[_BbTq:QIr5Hg" variabletype="">x</field></block></value></block></value></block></value><value name="B"><block type="math_single"><field name="OP">ABS</field><value name="NUM"><block type="math_arithmetic"><field name="OP">MINUS</field><value name="A"><block type="bot_player_XY"><field name="PLAYER">p1</field><field name="ATTR">y</field></block></value><value name="B"><block type="variables_get"><field name="VAR" id="0oh/=.RCpwc/3l~A]7XS" variabletype="">y</field></block></value></block></value></block></value></block></value></block></value></block><block type="procedures_defreturn" x="19" y="168"><mutation statements="false"></mutation><field name="NAME">distanceToClosestPlayer</field><comment pinned="false" h="80" w="160">Gibt die Distanz zu dem Spieler zurück, der am nächsten an einem dran ist.</comment><value name="RETURN"><block type="math_on_list"><mutation op="MIN"></mutation><field name="OP">MIN</field><value name="LIST"><block type="lists_create_with"><mutation items="8"></mutation><value name="ADD0"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p2</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p2</field><field name="ATTR">y</field></block></value></block></value><value name="ADD1"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p3</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p3</field><field name="ATTR">y</field></block></value></block></value><value name="ADD2"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p4</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p4</field><field name="ATTR">y</field></block></value></block></value><value name="ADD3"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p5</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p5</field><field name="ATTR">y</field></block></value></block></value><value name="ADD4"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p6</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p6</field><field name="ATTR">y</field></block></value></block></value><value name="ADD5"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p7</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p7</field><field name="ATTR">y</field></block></value></block></value><value name="ADD6"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p8</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p8</field><field name="ATTR">y</field></block></value></block></value><value name="ADD7"><block type="procedures_callreturn"><mutation name="distanceToPlayer"><arg name="x"></arg><arg name="y"></arg></mutation><value name="ARG0"><block type="bot_player_XY"><field name="PLAYER">p9</field><field name="ATTR">x</field></block></value><value name="ARG1"><block type="bot_player_XY"><field name="PLAYER">p9</field><field name="ATTR">y</field></block></value></block></value></block></value></block></value></block>') +
 '  </category>' + 
 '</xml>';
