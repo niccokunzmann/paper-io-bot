@@ -8,6 +8,20 @@ var toolbox =
 '    </block>' + 
 '    <block type="bot_sense_direction">' + 
 '    </block>' + 
+'    <block type="bot_sense_absolute">' + 
+'      <value name="X">' +
+'        <block type="bot_player_XY">' +
+'          <field name="ATTR">x</field>' + 
+'        </block>' +
+'      </value>' +
+'      <value name="Y">' +
+'        <block type="bot_player_XY">' +
+'          <field name="ATTR">y</field>' + 
+'        </block>' +
+'      </value>' +
+'    </block>' + 
+'    <block type="bot_player_XY">' + 
+'    </block>' + 
 '  </category>' +
 '  <category name="Text" colour="%{BKY_TEXTS_HUE}">' + 
 '    <block type="text_print">' + 

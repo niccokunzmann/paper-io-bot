@@ -50,5 +50,19 @@ function botClassifyNone(owner) {
   return owner == 0;
 }
 
-
+/* player names */
+function botGetPlayerNames() {
+  var names = [];
+  var i = 1; // seems like p0 is always absent
+  var playerExists = false;
+  while (names.length == 0 || playerExists) {
+    var playerName = "p" + i;
+    playerExists = window[playerName + "_x"] != undefined;
+    if (playerExists) {
+      names.push(playerName);
+    }
+    i++;
+  }
+  return names;
+}
 
