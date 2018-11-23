@@ -1,6 +1,32 @@
 // from blockly/demos/toolbox/index.html
 var toolbox = 
 '<xml id="toolbox" style="display: none">' + 
+'  <category name="Navigation" colour="45">' + 
+'    <block type="bot_move">' + 
+'    </block>' + 
+'    <block type="bot_turn">' + 
+'    </block>' + 
+'    <block type="bot_sense_direction">' + 
+'    </block>' + 
+'  </category>' +
+'  <category name="Text" colour="%{BKY_TEXTS_HUE}">' + 
+'    <block type="text_print">' + 
+'      <value name="TEXT">' + 
+'        <block type="text">' + 
+'          <field name="TEXT"></field>' + 
+'        </block>' + 
+'      </value>' + 
+'    </block>' + 
+'    <block type="bot_log">' + 
+'      <value name="TEXT">' + 
+'        <block type="text">' + 
+'          <field name="TEXT">a: </field>' + 
+'        </block>' + 
+'      </value>' + 
+'    </block>' + 
+'    <block type="text_join">' + 
+'    </block>' + 
+'  </category>' + 
 '  <category name="Logic" colour="%{BKY_LOGIC_HUE}">' + 
 '    <block type="controls_if"></block>' + 
 '    <block type="controls_if">' + 
@@ -24,7 +50,11 @@ var toolbox =
 '        </block>' + 
 '      </value>' + 
 '    </block>' + 
-'    <block type="controls_whileUntil"></block>' + 
+'    <block type="controls_whileUntil">' +
+'      <value name="BOOL">' + // https://github.com/google/blockly/blob/master/blocks/loops.js#L104
+'        <block type="logic_boolean"></block>' +
+'      </value>' +
+'    </block>' + 
 '    <block type="controls_for">' + 
 '      <field name="VAR">i</field>' + 
 '      <value name="FROM">' + 
@@ -235,29 +265,5 @@ var toolbox =
 '        </statement>' + 
 '      </block>' + 
 '    </category>' + 
-'  </category>' + 
-'  <category name="Bot" colour="%{BKY_TEXTS_HUE}">' + 
-'    <block type="bot_move">' + 
-'    </block>' + 
-'    <block type="bot_turn">' + 
-'    </block>' + 
-'    <block type="bot_sense_direction">' + 
-'    </block>' + 
-'    <block type="text_print">' + 
-'      <value name="TEXT">' + 
-'        <block type="text">' + 
-'          <field name="TEXT"></field>' + 
-'        </block>' + 
-'      </value>' + 
-'    </block>' + 
-'    <block type="bot_log">' + 
-'      <value name="TEXT">' + 
-'        <block type="text">' + 
-'          <field name="TEXT">a: </field>' + 
-'        </block>' + 
-'      </value>' + 
-'    </block>' + 
-'    <block type="text_join">' + 
-'    </block>' + 
 '  </category>' + 
 '</xml>';

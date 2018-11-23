@@ -6,9 +6,9 @@
  * https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
  */
 
-var COLOR_MOVEMENT = 45;
+var COLOR_NAVIGATION = 45;
 
-/* alert block */
+/* log block */
 Blockly.Blocks['bot_log'] = {
   init: function() {
     this.appendValueInput("TEXT")
@@ -45,7 +45,7 @@ Blockly.Blocks['bot_turn'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(COLOR_MOVEMENT);
+    this.setColour(COLOR_NAVIGATION);
     this.setTooltip("Dreht den Spieler in die Richtung.");
     this.setHelpUrl("");
   }
@@ -65,7 +65,7 @@ Blockly.Blocks['bot_move'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(COLOR_MOVEMENT);
+    this.setColour(COLOR_NAVIGATION);
     this.setTooltip("Wartet, bis der Spieler einen Schritt gemacht hat.");
     this.setHelpUrl("");
   }
@@ -85,7 +85,7 @@ Blockly.Blocks['bot_sense_direction'] = {
         .appendField("is")
         .appendField(new Blockly.FieldDropdown([["ahead","[positionInDirection(botCurrentDirection)]"], ["left","[positionInDirection(leftOf(botCurrentDirection))]"], ["right","[positionInDirection(rightOf(botCurrentDirection))]"], ["behind","[positionInDirection(oppositeOf(botCurrentDirection))]"], ["north","[positionInDirection(\"north\")]"], ["west","[positionInDirection(\"west\")]"], ["south","[positionInDirection(\"south\")]"], ["east","[positionInDirection(\"east\")]"]]), "DIRECTION");
     this.setOutput(true, "Boolean");
-    this.setColour(230);
+    this.setColour(COLOR_NAVIGATION);
  this.setTooltip("");
  this.setHelpUrl("");
   }
