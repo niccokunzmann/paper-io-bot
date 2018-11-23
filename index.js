@@ -5,7 +5,7 @@ function fillCode() {
   element.innerText = 
     "window.botRoot = \"" + location + "\"; \n" + 
     "var script = document.createElement(\"script\"); \n" + 
-    "script.src = botRoot + \"load-bot.js\"; \n" + 
+    "script.src = botRoot + \"load-bot.js\" + \"?version=\" + new Date().getTime(); \n" + 
     "document.head.appendChild(script);";
 }
 
