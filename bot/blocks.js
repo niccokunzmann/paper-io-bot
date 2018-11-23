@@ -91,7 +91,7 @@ var DROPDOWN_OPTIONS_DIRECTION = [
   ["ahead","[positionInDirection(botCurrentDirection)]"],
   ["left","[positionInDirection(leftOf(botCurrentDirection))]"],
   ["right","[positionInDirection(rightOf(botCurrentDirection))]"],
-  ["here","[botCurrentDirection]"],
+  ["here","[getCurrentPosition()]"],
   ["behind","[positionInDirection(oppositeOf(botCurrentDirection))]"],
   ["north","[positionInDirection(\"north\")]"],
   ["west","[positionInDirection(\"west\")]"],
@@ -163,7 +163,7 @@ Blockly.Blocks['bot_player_XY'] = {
         .appendField(new Blockly.FieldDropdown([["X","x"], ["Y","y"]]), "ATTR");
     this.setOutput(true, "Number");
     this.setColour(COLOR_NAVIGATION);
-    this.setTooltip("X- und Y-Koordinate von Spielern. P1 ist man");
+    this.setTooltip("X- und Y-Koordinate von Spielern. P1 ist man selbst. Wenn der Spieler nicht existiert, ist der Wert 0.");
     this.setHelpUrl("");
   }
 };
@@ -171,7 +171,7 @@ Blockly.Blocks['bot_player_XY'] = {
 Blockly.JavaScript['bot_player_XY'] = function(block) {
   var dropdown_player = block.getFieldValue('PLAYER');
   var dropdown_attr = block.getFieldValue('ATTR');
-  var code = dropdown_player + "_" + dropdown_attr;
+  var code = '(window["' + dropdown_player + '_' + dropdown_attr + '"] || 0)';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 

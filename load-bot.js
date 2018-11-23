@@ -11,6 +11,8 @@ var toolbox;
 var botInitilizeMovement;
 var BotWorkspaceLoaded;
 var botSenseAnyAt;
+var BlocklyStorage;
+var BotImportExportLoaded;
 
 (function () {
   var scripts = [];
@@ -54,6 +56,8 @@ var botSenseAnyAt;
   loadScript("bot/movement.js" + nocache,  function(){return botInitilizeMovement;});
   loadScript("bot/workspace.js" + nocache, function(){return BotWorkspaceLoaded;});
   loadScript("bot/sensing.js" + nocache, function(){return botSenseAnyAt;});
+  loadScript("blockly/storage.js", function(){return BlocklyStorage;});
+  loadScript("bot/importExport.js" + nocache, function(){return BotImportExportLoaded;});
   loadStyle("bot/workspace.css" + nocache);
   
   // load scripts in order
