@@ -2,23 +2,19 @@
 var toolbox = 
 '<xml id="toolbox" style="display: none">' + 
 '  <category name="Logic" colour="%{BKY_LOGIC_HUE}">' + 
-'    <category name="If">' + 
-'      <block type="controls_if"></block>' + 
-'      <block type="controls_if">' + 
-'        <mutation else="1"></mutation>' + 
-'      </block>' + 
-'      <block type="controls_if">' + 
-'        <mutation elseif="1" else="1"></mutation>' + 
-'      </block>' + 
-'    </category>' + 
-'    <category name="Boolean" colour="%{BKY_LOGIC_HUE}">' + 
-'      <block type="logic_compare"></block>' + 
-'      <block type="logic_operation"></block>' + 
-'      <block type="logic_negate"></block>' + 
-'      <block type="logic_boolean"></block>' + 
-'      <block type="logic_null"></block>' + 
-'      <block type="logic_ternary"></block>' + 
-'    </category>' + 
+'    <block type="controls_if"></block>' + 
+'    <block type="controls_if">' + 
+'      <mutation else="1"></mutation>' + 
+'    </block>' + 
+'    <block type="controls_if">' + 
+'      <mutation elseif="1" else="1"></mutation>' + 
+'    </block>' + 
+'    <block type="logic_compare"></block>' + 
+'    <block type="logic_operation"></block>' + 
+'    <block type="logic_negate"></block>' + 
+'    <block type="logic_boolean"></block>' + 
+'    <block type="logic_null"></block>' + 
+'    <block type="logic_ternary"></block>' + 
 '  </category>' + 
 '  <category name="Loops" colour="%{BKY_LOOPS_HUE}">' + 
 '    <block type="controls_repeat_ext">' + 
