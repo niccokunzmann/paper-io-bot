@@ -1,8 +1,9 @@
 
 
 #source {
-  background: #dd7722;
+  background: #eeaa55;
   padding: 1em;
+  border-radius: 5px;
 }
 
 footer {
@@ -11,8 +12,32 @@ footer {
   border-top-style: solid;
   width: 100%;
   padding: 0.3em;
+  display: inline-block;
+  margin: 1em;
 }
 
 footer a {
   color: #0000aa;
 }
+
+.video-preview-image {
+  margin-right: 1em;
+  height: 10em;
+  float: left;
+  border-radius: 5px;
+}
+
+p {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+h1 {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+body {
+  max-width: 40em;
+}
+
