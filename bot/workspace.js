@@ -84,13 +84,10 @@ var LoopTrap; // count to break infinite loops
     var thisBotTurn = botTurn;
     function executingBlock(id) {
       if (botTurn != thisBotTurn) {
-        throw "Stop Bot Execution number" + thisBotTurn;
+        throw "Stop Bot Execution number " + thisBotTurn;
       }
       workspace.highlightBlock(id);
     }
-    // avoid infinite loops
-    LoopTrap = 100000;
-    Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if(--window.LoopTrap == 0) throw "Infinite loop.";\n';
     // generate the code
     Blockly.JavaScript.addReservedWords('code');
     var code = Blockly.JavaScript.workspaceToCode(workspace);
