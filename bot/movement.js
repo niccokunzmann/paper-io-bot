@@ -92,16 +92,10 @@ function oppositeOf(direction) {
 
 /* Turns the player in a direction if possible.
  * Called by the bot_turn block.
- * direction is "north", "south", "east", "west", "left", "right"
+ * direction is "north", "south", "east", "west"
  *
  */
 function botMoveInto(direction) {
-  if (direction == "left") {
-    direction = leftOf(botCurrentDirection);
-  } else if (direction == "right") {
-    direction = rightOf(botCurrentDirection);
-  }
-  botCurrentDirection = direction;
   var charCode = directionToCharCode[direction];
   // trigger keydown event from https://stackoverflow.com/a/5920206
   if (window["$"] == undefined) {

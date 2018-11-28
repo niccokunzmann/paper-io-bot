@@ -28,51 +28,57 @@ Blockly.JavaScript['bot_log'] = function(block) {
   return code;
 };
 
+
+var DROPDOWN_OPTIONS_TURN = [
+  ["left","botMoveInto(leftOf(botCurrentDirection))"],
+  ["right","botMoveInto(rightOf(botCurrentDirection))"],
+  ["north","botMoveInto('north')"],
+  ["east","botMoveInto('east')"],
+  ["south","botMoveInto('south')"],
+  ["west","botMoveInto('west')"],
+];
+
 /* --------- Movement --------- */
+/* Move the bot into a direction. */
+Blockly.Blocks['bot_move_turn'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("move one step")
+        .appendField(new Blockly.FieldDropdown([["ahead", "/* move ahead */"]].concat(DROPDOWN_OPTIONS_TURN)), "DIRECTION");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(COLOR_NAVIGATION);
+    this.setTooltip("Der Spieler dreht sich in eine Richtung und bewegt sich einen Schritt.");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['bot_move_turn'] = function(block) {
+  var dropdown_direction = block.getFieldValue('DIRECTION');
+  var code = dropdown_direction + '; await botWaitForMove();\n';
+  return code;
+};
+
+
 /* Turning into a direction. */
 Blockly.Blocks['bot_turn'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("turn")
-        .appendField(new Blockly.FieldDropdown([
-            ["left","'left'"],
-            ["right","'right'"],
-            ["north","'north'"],
-            ["east","'east'"],
-            ["south","'south'"],
-            ["west","'west'"],
-          ]), "DIRECTION");
+        .appendField(new Blockly.FieldDropdown(DROPDOWN_OPTIONS_TURN), "DIRECTION");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(COLOR_NAVIGATION);
-    this.setTooltip("Dreht den Spieler in die Richtung.");
+    this.setTooltip("Dreht den Spieler in die Richtung. Nur die erste Drehung zählt.");
     this.setHelpUrl("");
   }
 };
 
 Blockly.JavaScript['bot_turn'] = function(block) {
   var dropdown_direction = block.getFieldValue('DIRECTION');
-  var code = 'botMoveInto(' + dropdown_direction + ');\n';
-  return code;
-};
-
-/* move the bot */
-Blockly.Blocks['bot_move'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("move one step");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(COLOR_NAVIGATION);
-    this.setTooltip("Wartet, bis der Spieler einen Schritt gemacht hat.");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.JavaScript['bot_move'] = function(block) {
-  var code = 'await botWaitForMove();\n';
+  var code = dropdown_direction + ';\n';
   return code;
 };
 

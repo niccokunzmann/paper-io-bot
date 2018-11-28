@@ -32,7 +32,7 @@ function botMakeXMLReadyForToolbox(xml) {
 var toolbox = 
 '<xml id="toolbox" style="display: none">' + 
 '  <category name="Navigation" colour="45">' + 
-'    <block type="bot_move">' + 
+'    <block type="bot_move_turn">' + 
 '    </block>' + 
 '    <block type="bot_turn">' + 
 '    </block>' + 
