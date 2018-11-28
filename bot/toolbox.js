@@ -34,6 +34,8 @@ var toolbox =
 '  <category name="Navigation" colour="45">' + 
 '    <block type="bot_move_turn">' + 
 '    </block>' + 
+//'    <block type="bot_move">' + 
+//'    </block>' + 
 '    <block type="bot_turn">' + 
 '    </block>' + 
 '    <block type="bot_sense_direction">' + 

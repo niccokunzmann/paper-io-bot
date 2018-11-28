@@ -82,6 +82,25 @@ Blockly.JavaScript['bot_turn'] = function(block) {
   return code;
 };
 
+/* move the bot */
+Blockly.Blocks['bot_move'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("move one step");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(COLOR_NAVIGATION);
+    this.setTooltip("Wartet, bis der Spieler einen Schritt gemacht hat.");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['bot_move'] = function(block) {
+  var code = 'await botWaitForMove();\n';
+  return code;
+};
+
 var DROPDOWN_OPTIONS_OWNER = [ // see sensing.js
   ["my","[botClassifyMy]"],
   ["an enemy","[botClassifyEnemy]"],
