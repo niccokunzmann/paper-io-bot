@@ -32,10 +32,10 @@ Blockly.JavaScript['bot_log'] = function(block) {
 var DROPDOWN_OPTIONS_TURN = [
   ["left","botMoveInto(leftOf(botCurrentDirection))"],
   ["right","botMoveInto(rightOf(botCurrentDirection))"],
-  ["north","botMoveInto('north')"],
-  ["east","botMoveInto('east')"],
-  ["south","botMoveInto('south')"],
-  ["west","botMoveInto('west')"],
+  ["North","botMoveInto('north')"],
+  ["East","botMoveInto('east')"],
+  ["South","botMoveInto('south')"],
+  ["West","botMoveInto('west')"],
 ];
 
 /* --------- Movement --------- */
@@ -118,10 +118,10 @@ var DROPDOWN_OPTIONS_DIRECTION = [
   ["right","[positionInDirection(rightOf(botCurrentDirection))]"],
   ["here","[getCurrentPosition()]"],
   ["behind","[positionInDirection(oppositeOf(botCurrentDirection))]"],
-  ["north","[positionInDirection(\"north\")]"],
-  ["west","[positionInDirection(\"west\")]"],
-  ["south","[positionInDirection(\"south\")]"],
-  ["east","[positionInDirection(\"east\")]"],
+  ["North","[positionInDirection(\"north\")]"],
+  ["West","[positionInDirection(\"west\")]"],
+  ["South","[positionInDirection(\"south\")]"],
+  ["East","[positionInDirection(\"east\")]"],
 ];
 
 /* sensing relative */
@@ -199,4 +199,28 @@ Blockly.JavaScript['bot_player_XY'] = function(block) {
   var code = '(window["' + dropdown_player + '_' + dropdown_attr + '"] || 0)';
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
+
+/* direction */
+Blockly.Blocks['bot_direction_is'] = {
+  init: function() {
+    var dropdownNames = botGetPlayerNames().map(function(name){
+      return [name.toUpperCase(), name];
+    });
+    this.appendDummyInput()
+        .appendField("my direction is")
+        .appendField(new Blockly.FieldDropdown([["North","'north'"], ["West","'west'"], ["South","'south'"], ["East","'east'"]]), "DIRECTION");
+    this.setOutput(true, "Boolean");
+    this.setColour(COLOR_NAVIGATION);
+    this.setTooltip("In welche Richtung man sich gerade bewegt.");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['bot_direction_is'] = function(block) {
+  var dropdown_direction = block.getFieldValue('DIRECTION');
+  var code = '(botCurrentDirection == ' + dropdown_direction + ')';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+
 

@@ -54,6 +54,8 @@ var toolbox =
 '    </block>' + 
 '    <block type="bot_player_XY">' + 
 '    </block>' + 
+'    <block type="bot_direction_is">' + 
+'    </block>' + 
 '  </category>' +
 '  <category name="Text" colour="%{BKY_TEXTS_HUE}">' + 
 '    <block type="text_print">' + 
