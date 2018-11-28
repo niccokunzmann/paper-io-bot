@@ -10,6 +10,10 @@ var LoopTrap; // count to break infinite loops
 (function () {
   var workspaceElement;
   var workspace;
+  
+  var controlsContainer = document.createElement("div");
+  controlsContainer.id = "controlsContainer";
+  document.body.appendChild(controlsContainer);
 
   function createBlocklyArea() {
     // create the elements we use to show blockly
@@ -57,20 +61,26 @@ var LoopTrap; // count to break infinite loops
 
   function createOpenAndClose() {
     var openClose = document.createElement("a");
-    openClose.id = "openClose";
-    openClose.classList.add("floatingButton");
-    openClose.innerText = "Bot";
-    document.body.appendChild(openClose);
+    openClose.classList.add("botButton");
+    controlsContainer.appendChild(openClose);
+
+    function adjustText() {
+      openClose.innerText = workspaceElement.classList.contains("hidden") ?
+        "Show Bot" : "Hide Bot";
+    }
 
     openClose.onclick = function () {
       workspaceElement.classList.toggle("hidden");
       openClose.classList.toggle("selected");
+      adjustText();
     }
     
     openWorkspace = function() {
       workspaceElement.classList.remove("hidden");
       openClose.classList.add("selected");
     }
+    
+    adjustText();
   }
   
   async function runCode() {
@@ -138,15 +148,19 @@ var LoopTrap; // count to break infinite loops
   }
   
   function createControls() {
-    var startButton = document.createElement("a");
-    startButton.id = "startButton";
-    startButton.classList.add("floatingButton");
-    startButton.innerText = "Load Code";
-    document.body.appendChild(startButton);
+    var loadButton = document.createElement("a");
+    loadButton.classList.add("botButton");
+    loadButton.innerText = "Load Code";
+    loadButton.onclick = startBot;
+    controlsContainer.appendChild(loadButton);
 
+    var startButton = document.createElement("a");
+    startButton.classList.add("botButton");
+    startButton.innerText = "Play";
     startButton.onclick = function () {
-      startBot();
-    }
+      window.game_start();
+    };
+    controlsContainer.appendChild(startButton);
   }
   
   createBlocklyArea();

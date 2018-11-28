@@ -4,14 +4,6 @@
   display: none;
 }
 
-.floatingButton {
-  padding: 0.3em;
-  border-radius: 0.3em;
-  background-color: #eee;
-  position: absolute;
-  z-index: 1001;
-}
-
 /* button for the editor to hide the editor */
 #openClose {
   top: 0.1em;
@@ -47,10 +39,28 @@ html, body {
   background-color: rgba(0,0,0,0);
 }
 
-/* Controls */
+/* controls in the corner */
 
-#startButton {
-  top: 2em;
-  right: 0.1em;
+.botButton {
+  padding: 0.3em;
+//  border-radius: 0.3em;
+//  background-color: #fafc5b;
+  margin: 0.2em;
+  display: inline-block;
+  background: #eaec4b;
+  border-bottom: 6px solid #a1a130;
+  margin-top: -2px;
+  color: #888a34;
+  line-height: 32px;
+  font-size: 34px;
 }
 
+#controlsContainer {
+  z-index: 1001;
+  position: absolute;
+  margin: 0.1em;
+  top: 0em;
+  right: 0em;
+  line-height: 32px;
+  font-size: 34px;
+}
