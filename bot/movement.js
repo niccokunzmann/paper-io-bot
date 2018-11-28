@@ -38,8 +38,8 @@ async function awaitMovement() {
  * 
  */
 function botInitilizeMovementGlobally() {
-  var x0 = p1_x;
-  var y0 = p1_y;
+  var x0 = window.p1_x;
+  var y0 = window.p1_y;
   continueExecutionAfterWaitingForMovement();
   var id = setInterval(function() {
     if (p1_x == x0 && p1_y == y0) {

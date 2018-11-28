@@ -19,7 +19,7 @@ var LoopTrap; // count to break infinite loops
     // create the elements we use to show blockly
     workspaceElement = document.createElement("div");
     workspaceElement.id = "blocklyWorkspace";
-    //workspaceElement.classList.add("workspaceArea");
+    workspaceElement.classList.add("botElement");
     document.body.appendChild(workspaceElement);
 
     workspaceArea = document.createElement("div");
@@ -65,18 +65,17 @@ var LoopTrap; // count to break infinite loops
     controlsContainer.appendChild(openClose);
 
     function adjustText() {
-      openClose.innerText = workspaceElement.classList.contains("hidden") ?
+      openClose.innerText = document.body.classList.contains("hideBotElements") ?
         "Show Bot" : "Hide Bot";
     }
 
     openClose.onclick = function () {
-      workspaceElement.classList.toggle("hidden");
-      openClose.classList.toggle("selected");
+      document.body.classList.toggle("hideBotElements");
       adjustText();
     }
     
     openWorkspace = function() {
-      workspaceElement.classList.remove("hidden");
+      document.body.classList.remove("hideBotElements");
       openClose.classList.add("selected");
     }
     
@@ -134,12 +133,18 @@ var LoopTrap; // count to break infinite loops
   
   function waitForStart() {
     if (!game_start_original) {
-      game_start_original = game_start;
+      if (window["game_start"] == undefined) {
+        // party mode
+        game_start_original = paperio_play
+      } else {
+        // normal mode
+        game_start_original = game_start;
+      }
     }
-    window.game_start = start = function () {
+    window.game_start = start = function (arg) {
       startBot();
       console.log("game starts");
-      game_start_original();
+      game_start_original(arg);
     }
   }
   
@@ -150,12 +155,14 @@ var LoopTrap; // count to break infinite loops
   function createControls() {
     var loadButton = document.createElement("a");
     loadButton.classList.add("botButton");
+    loadButton.classList.add("botElement");
     loadButton.innerText = "Load Code";
     loadButton.onclick = startBot;
     controlsContainer.appendChild(loadButton);
 
     var startButton = document.createElement("a");
     startButton.classList.add("botButton");
+    startButton.classList.add("botElement");
     startButton.innerText = "Play";
     startButton.onclick = function () {
       window.game_start();

@@ -1,8 +1,12 @@
-
 /* hide elements */
-.hidden {
+.botElement {
+  display: block;
+}
+
+.hideBotElements .botElement {
   display: none;
 }
+
 
 /* button for the editor to hide the editor */
 #openClose {
@@ -49,7 +53,7 @@ html, body {
   display: inline-block;
   background: #eaec4b;
   border-bottom: 6px solid #a1a130;
-  margin-top: -2px;
+  margin-top: 2px;
   color: #888a34;
   line-height: 32px;
   font-size: 34px;
@@ -63,4 +67,8 @@ html, body {
   right: 0em;
   line-height: 32px;
   font-size: 34px;
+  display: block;
 }
+
+
+
