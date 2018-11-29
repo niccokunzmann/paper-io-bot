@@ -77,6 +77,7 @@ var LoopTrap; // count to break infinite loops
     openWorkspace = function() {
       document.body.classList.remove("hideBotElements");
       openClose.classList.add("selected");
+      adjustText();
     }
     
     adjustText();
